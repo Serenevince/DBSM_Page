@@ -1,23 +1,29 @@
 import { useEffect, useState } from "react";
-import hero1 from "@/assets/hero-1.webp";
-import hero2 from "@/assets/hero-2.webp";
-import hero3 from "@/assets/hero-3.webp";
-import ambient from "@/assets/hero-ambient.mp4.asset.json";
+import slider1 from "@/assets/dbsm/slider-1.webp";
+import slider3 from "@/assets/dbsm/slider-3.webp";
+import slider4 from "@/assets/dbsm/slider-4.webp";
+import slider5 from "@/assets/dbsm/slider-5.webp";
+import ambient from "@/assets/tour-auditorium.mp4.asset.json";
 
 const slides = [
   {
-    image: hero1,
+    image: slider1,
     title: "Don Bosco Skill Mission",
     text: "Promoting research, training, innovation and professional development in the skill development sector.",
   },
   {
-    image: hero2,
-    title: "A Place To Breathe",
-    text: "Capacity development of trainers in technical knowledge, facilitation, classroom delivery and management.",
+    image: slider5,
+    title: "Don Bosco Skill Mission",
+    text: "Capacity development of trainers in technical knowledge, facilitation skills, classroom delivery and management.",
   },
   {
-    image: hero3,
-    title: "Learning, Gently Guided",
+    image: slider3,
+    title: "Don Bosco Skill Mission",
+    text: "Accessible, iconic and inspirational — a perfect venue for conferences, award functions, workshops and events.",
+  },
+  {
+    image: slider4,
+    title: "Don Bosco Skill Mission",
     text: "A Centre of Excellence with state-of-the-art labs and knowledge from industry leaders.",
   },
 ];
@@ -41,7 +47,8 @@ export function Hero() {
         muted
         loop
         playsInline
-        poster={hero1}
+        preload="none"
+        poster={slider1}
       >
         <source src={ambient.url} type="video/mp4" />
       </video>
@@ -50,13 +57,13 @@ export function Hero() {
         <img
           key={s.image}
           src={s.image}
-          alt={s.title}
+          alt="Don Bosco Skill Mission campus"
           width={1920}
           height={1080}
           loading={i === 0 ? "eager" : "lazy"}
           decoding="async"
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[2200ms] ${
-            i === index ? "opacity-70 animate-kenburns" : "opacity-0"
+            i === index ? "opacity-80 animate-kenburns" : "opacity-0"
           }`}
         />
       ))}
@@ -94,7 +101,7 @@ export function Hero() {
         <div className="mt-14 flex gap-2">
           {slides.map((s, i) => (
             <button
-              key={s.title}
+              key={s.image}
               aria-label={`Show slide ${i + 1}`}
               onClick={() => setIndex(i)}
               className={`h-1.5 rounded-full transition-all duration-500 ${
