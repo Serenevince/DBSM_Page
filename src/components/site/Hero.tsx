@@ -24,6 +24,7 @@ const slides = [
 
 export function Hero() {
   const [index, setIndex] = useState(0);
+  const active = slides[index] ?? slides[0]!;
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -69,10 +70,10 @@ export function Hero() {
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-6xl flex-col items-center justify-center px-6 text-center">
         <p className="script-accent animate-rise">welcome to a calmer campus</p>
         <h1 className="text-hero mt-3 max-w-4xl font-semibold text-primary-foreground animate-rise">
-          {slides[index].title}
+          {active.title}
         </h1>
         <p className="text-fluid mt-6 max-w-2xl text-primary-foreground/85 animate-rise">
-          {slides[index].text}
+          {active.text}
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
