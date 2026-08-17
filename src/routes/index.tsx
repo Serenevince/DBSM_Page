@@ -1,13 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site/SiteNav";
 import { Hero } from "@/components/site/Hero";
+import { CampusTour } from "@/components/site/CampusTour";
 import { Reveal } from "@/components/site/Reveal";
-import auditorium from "@/assets/campus-auditorium.webp";
-import conference from "@/assets/campus-conference.webp";
-import openSpace from "@/assets/campus-open.webp";
-import calm from "@/assets/hero-2.webp";
-import workshop from "@/assets/hero-3.webp";
-import campus from "@/assets/hero-1.webp";
+import aboutBg from "@/assets/dbsm/about-bg.webp";
+import objectivesBg from "@/assets/dbsm/objectives-bg.webp";
+import slider3 from "@/assets/dbsm/slider-3.webp";
+import coeElectrician from "@/assets/dbsm/coe-electrician.webp";
+import coeBeautician from "@/assets/dbsm/coe-beautician.webp";
+import coeFacilities from "@/assets/dbsm/coe-facilities.webp";
+import coePlumbing from "@/assets/dbsm/coe-plumbing.webp";
+import coeAc from "@/assets/dbsm/coe-inus-air-condition.webp";
+import coeFridge from "@/assets/dbsm/coe-home-refridgration.webp";
+import coeRetail from "@/assets/dbsm/coe-retail.webp";
+import coeBpo from "@/assets/dbsm/coe-bpo.webp";
+import coeHospitality from "@/assets/dbsm/coe-hospitality.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -50,25 +57,16 @@ const objectives = [
   },
 ];
 
-const campusSpaces = [
-  { img: auditorium, title: "Auditorium", text: "Warm acoustics and soft light for gatherings of every size." },
-  { img: conference, title: "Conference Hall", text: "Glass-lined rooms opening onto trees and quiet daylight." },
-  { img: openSpace, title: "Open Green Space", text: "Lawns and shaded pathways for outdoor learning and rest." },
-  { img: workshop, title: "Training Halls", text: "Bright, spacious halls built for hands-on practice." },
-  { img: calm, title: "Retreat & Reflection", text: "Still corners of the campus made for slowing down." },
-  { img: campus, title: "Campus at Golden Hour", text: "An architecture of calm, framed by green hills." },
-];
-
 const excellence = [
-  "Electrical",
-  "Beauty & Wellness",
-  "Facility Management",
-  "Plumbing",
-  "Industrial Air Conditioning",
-  "Home AC / Refrigeration",
-  "Retail",
-  "BPO",
-  "Hospitality, F&B and House Keeping",
+  { img: coeElectrician, label: "Electrical" },
+  { img: coeBeautician, label: "Beauty & Wellness" },
+  { img: coeFacilities, label: "Facility Management" },
+  { img: coePlumbing, label: "Plumbing" },
+  { img: coeAc, label: "Industrial Air Conditioning" },
+  { img: coeFridge, label: "Home AC / Refrigeration" },
+  { img: coeRetail, label: "Retail" },
+  { img: coeBpo, label: "BPO" },
+  { img: coeHospitality, label: "Hospitality, F&B and House Keeping" },
 ];
 
 const events = [
@@ -116,8 +114,8 @@ function Index() {
           <Reveal delay={120}>
             <div className="relative overflow-hidden rounded-3xl shadow-[var(--shadow-float)]">
               <img
-                src={campus}
-                alt="Aerial view of the Don Bosco Skill Mission campus at golden hour"
+                src={aboutBg}
+                alt="Don Bosco Skill Mission campus building"
                 width={1920}
                 height={1080}
                 loading="lazy"
@@ -131,7 +129,7 @@ function Index() {
 
       <section id="objectives" className="relative overflow-hidden py-24 md:py-32">
         <img
-          src={calm}
+          src={objectivesBg}
           alt=""
           aria-hidden="true"
           width={1920}
@@ -159,40 +157,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="campus" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-        <Reveal className="text-center">
-          <p className="script-accent">walk with us</p>
-          <h2 className="text-section mt-2 font-semibold">Campus Tour</h2>
-          <p className="text-fluid mx-auto mt-4 max-w-2xl text-muted-foreground">
-            Spaces designed for focus and for rest — halls, labs, lawns and long quiet corridors.
-          </p>
-        </Reveal>
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {campusSpaces.map((c, i) => (
-            <Reveal key={c.title} delay={i * 90}>
-              <figure className="group relative h-72 overflow-hidden rounded-3xl shadow-[var(--shadow-soft)]">
-                <img
-                  src={c.img}
-                  alt={c.title}
-                  width={1280}
-                  height={853}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-full w-full object-cover transition-transform duration-[1400ms] group-hover:scale-110"
-                  style={{ willChange: "transform" }}
-                />
-                <figcaption
-                  className="absolute inset-0 flex flex-col justify-end p-6"
-                  style={{ backgroundImage: "var(--gradient-veil)" }}
-                >
-                  <h3 className="text-lg font-semibold text-primary-foreground">{c.title}</h3>
-                  <p className="mt-1 text-sm text-primary-foreground/80">{c.text}</p>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      <CampusTour />
 
       <section id="excellence" className="bg-secondary/60 py-24 md:py-32">
         <div className="mx-auto max-w-6xl px-6">
@@ -200,15 +165,27 @@ function Index() {
             <p className="script-accent">skills that travel far</p>
             <h2 className="text-section mt-2 font-semibold">Centres of Excellence</h2>
           </Reveal>
-          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {excellence.map((e, i) => (
-              <Reveal key={e} delay={i * 60}>
-                <div className="group flex h-full items-center justify-between rounded-2xl border border-border bg-card px-6 py-5 transition-all duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-soft)]">
-                  <span className="text-sm font-medium">{e}</span>
-                  <span className="text-accent transition-transform duration-500 group-hover:translate-x-1">
-                    →
-                  </span>
-                </div>
+              <Reveal key={e.label} delay={i * 70}>
+                <figure className="group relative h-60 overflow-hidden rounded-3xl shadow-[var(--shadow-soft)]">
+                  <img
+                    src={e.img}
+                    alt={e.label}
+                    width={800}
+                    height={600}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover transition-transform duration-[1400ms] group-hover:scale-110"
+                    style={{ willChange: "transform" }}
+                  />
+                  <figcaption
+                    className="absolute inset-0 flex items-end p-6"
+                    style={{ backgroundImage: "var(--gradient-veil)" }}
+                  >
+                    <h3 className="text-lg font-semibold text-primary-foreground">{e.label}</h3>
+                  </figcaption>
+                </figure>
               </Reveal>
             ))}
           </div>
@@ -240,11 +217,11 @@ function Index() {
 
       <section id="contact" className="relative overflow-hidden py-24 md:py-32">
         <img
-          src={openSpace}
+          src={slider3}
           alt=""
           aria-hidden="true"
-          width={1280}
-          height={853}
+          width={1920}
+          height={1080}
           loading="lazy"
           decoding="async"
           className="absolute inset-0 h-full w-full object-cover"
